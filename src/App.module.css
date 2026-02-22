@@ -38,7 +38,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--surface-overlay);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     z-index: 10;
