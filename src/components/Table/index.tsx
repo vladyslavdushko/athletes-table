@@ -1,33 +1,7 @@
 import { useEffect, useState } from "react"
-import type { Athlete } from "./types/athlete"
+import type { Athlete } from "../../types/athlete"
+import { ATHLETE_COLUMNS as COLUMNS } from "../../constants/columns"
 import styles from "./styles.module.css"
-
-const COLUMNS: { key: keyof Athlete; label: string }[] = [
-  { key: "id", label: "ID" },
-  { key: "athleteCode", label: "Code" },
-  { key: "firstName", label: "First name" },
-  { key: "lastName", label: "Last name" },
-  { key: "gender", label: "Gender" },
-  { key: "age", label: "Age" },
-  { key: "dateOfBirth", label: "DOB" },
-  { key: "country", label: "Country" },
-  { key: "sport", label: "Sport" },
-  { key: "position", label: "Position" },
-  { key: "team", label: "Team" },
-  { key: "ranking", label: "Ranking" },
-  { key: "medals", label: "Medals" },
-  { key: "matchesPlayed", label: "Matches" },
-  { key: "wins", label: "Wins" },
-  { key: "losses", label: "Losses" },
-  { key: "winRate", label: "Win rate" },
-  { key: "heightCm", label: "Height (cm)" },
-  { key: "weightKg", label: "Weight (kg)" },
-  { key: "yearsPro", label: "Years pro" },
-  { key: "salaryUsd", label: "Salary (USD)" },
-  { key: "isOlympian", label: "Olympian" },
-  { key: "status", label: "Status" },
-  { key: "lastUpdated", label: "Updated" },
-]
 
 function formatCell(value: Athlete[keyof Athlete]): string {
   if (typeof value === "boolean") return value ? "Yes" : "No"
@@ -53,7 +27,7 @@ export function getColumnMinWidths(athletes: Athlete[]): Record<keyof Athlete, n
   return out
 }
 
-export type ColumnFilters = Partial<Record<keyof Athlete, string>>
+export type ColumnFilters = Partial<Record<keyof Athlete, string[]>>
 
 export type SortState = { key: keyof Athlete; dir: "asc" | "desc" } | null
 

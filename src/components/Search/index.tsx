@@ -1,20 +1,6 @@
-import type { Athlete } from "../Table/types/athlete"
+import type { Athlete } from "../../types/athlete"
+import { SEARCH_COLUMNS as SEARCH_FIELDS, COLUMN_LABELS } from "../../constants/columns"
 import styles from "./styles.module.css"
-
-const SEARCH_FIELDS: { key: keyof Athlete; label: string }[] = [
-  { key: "firstName", label: "First name" },
-  { key: "lastName", label: "Last name" },
-  { key: "athleteCode", label: "Code" },
-  { key: "country", label: "Country" },
-  { key: "sport", label: "Sport" },
-  { key: "position", label: "Position" },
-  { key: "team", label: "Team" },
-  { key: "gender", label: "Gender" },
-  { key: "status", label: "Status" },
-  { key: "id", label: "ID" },
-  { key: "ranking", label: "Ranking" },
-  { key: "age", label: "Age" },
-]
 
 export type SearchState = {
   field: keyof Athlete
@@ -51,7 +37,7 @@ export default function Search({ state, onSearchChange }: SearchProps) {
       <input
         type="search"
         className={styles.input}
-        placeholder={`Search by ${SEARCH_FIELDS.find((f) => f.key === field)?.label ?? field}...`}
+        placeholder={`Search by ${COLUMN_LABELS[field] ?? field}...`}
         value={query}
         onChange={(e) =>
           onSearchChange({

@@ -1,7 +1,7 @@
 import { useMemo, useState, useTransition } from "react"
 import { useDebouncedValue } from "./useDebouncedValue"
 import { filterBySearch, filterByColumns, sortByColumn } from "../utils/athleteFilters"
-import type { Athlete } from "../components/Table/types/athlete"
+import type { Athlete } from "../types/athlete"
 import type { SearchState } from "../components/Search"
 import type { ColumnFilters, SortState } from "../components/Table"
 
@@ -50,7 +50,7 @@ export function useAthleteTable(athletes: Athlete[]) {
 
     const hasActiveFilters =
         search.query.trim() !== "" ||
-        Object.values(columnFilters).some((v) => v && v.trim() !== "")
+        Object.values(columnFilters).some((arr) => arr && arr.length > 0)
 
     const resetAll = () => {
         setSearch(DEFAULT_SEARCH)

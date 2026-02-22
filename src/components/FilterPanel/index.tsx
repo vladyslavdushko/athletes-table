@@ -1,34 +1,8 @@
 import { useState } from "react"
-import type { Athlete } from "../Table/types/athlete"
+import type { Athlete } from "../../types/athlete"
 import type { ColumnFilters } from "../Table"
+import { ATHLETE_COLUMNS as FILTER_FIELDS } from "../../constants/columns"
 import styles from "./styles.module.css"
-
-const FILTER_FIELDS: { key: keyof Athlete; label: string }[] = [
-    { key: "id", label: "ID" },
-    { key: "athleteCode", label: "Code" },
-    { key: "firstName", label: "First name" },
-    { key: "lastName", label: "Last name" },
-    { key: "gender", label: "Gender" },
-    { key: "age", label: "Age" },
-    { key: "dateOfBirth", label: "DOB" },
-    { key: "country", label: "Country" },
-    { key: "sport", label: "Sport" },
-    { key: "position", label: "Position" },
-    { key: "team", label: "Team" },
-    { key: "ranking", label: "Ranking" },
-    { key: "medals", label: "Medals" },
-    { key: "matchesPlayed", label: "Matches" },
-    { key: "wins", label: "Wins" },
-    { key: "losses", label: "Losses" },
-    { key: "winRate", label: "Win rate" },
-    { key: "heightCm", label: "Height (cm)" },
-    { key: "weightKg", label: "Weight (kg)" },
-    { key: "yearsPro", label: "Years pro" },
-    { key: "salaryUsd", label: "Salary (USD)" },
-    { key: "isOlympian", label: "Olympian" },
-    { key: "status", label: "Status" },
-    { key: "lastUpdated", label: "Updated" },
-]
 
 type FilterRow = {
     id: number
@@ -51,26 +25,31 @@ export default function FilterPanel({
 }: FilterPanelProps) {
     const [open, setOpen] = useState(false)
     const [rows, setRows] = useState<FilterRow[]>(() => {
-        const initial = Object.entries(appliedFilters)
-            .filter(([, v]) => v && v.trim() !== "")
-            .map(([key, value]) => ({
-                id: nextId++,
-                field: key as keyof Athlete,
-                value: value!,
-            }))
+        const initial: FilterRow[] = []
+        for (const [key, values] of Object.entries(appliedFilters)) {
+            if (values) {
+                for (const value of values) {
+                    initial.push({
+                        id: nextId++,
+                        field: key as keyof Athlete,
+                        value,
+                    })
+                }
+            }
+        }
         return initial
     })
 
-    const appliedCount = Object.values(appliedFilters).filter(
-        (v) => v && v.trim() !== "",
-    ).length
+    const appliedCount = Object.values(appliedFilters).reduce(
+        (acc, arr) => acc + (arr ? arr.length : 0),
+        0
+    )
 
     const addRow = () => {
-        const usedFields = new Set(rows.map((r) => r.field))
-        const available = FILTER_FIELDS.find((f) => !usedFields.has(f.key))
+        const available = FILTER_FIELDS[0]
         setRows((prev) => [
             ...prev,
-            { id: nextId++, field: available?.key ?? "firstName", value: "" },
+            { id: nextId++, field: available.key, value: "" },
         ])
     }
 
@@ -80,8 +59,10 @@ export default function FilterPanel({
 
         const filters: ColumnFilters = {}
         for (const row of nextRows) {
-            if (row.value.trim() !== "") {
-                filters[row.field] = row.value
+            const val = row.value.trim()
+            if (val !== "") {
+                if (!filters[row.field]) filters[row.field] = []
+                filters[row.field]!.push(val)
             }
         }
         onApply(filters)
@@ -102,8 +83,10 @@ export default function FilterPanel({
     const handleApply = () => {
         const filters: ColumnFilters = {}
         for (const row of rows) {
-            if (row.value.trim() !== "") {
-                filters[row.field] = row.value
+            const val = row.value.trim()
+            if (val !== "") {
+                if (!filters[row.field]) filters[row.field] = []
+                filters[row.field]!.push(val)
             }
         }
         onApply(filters)

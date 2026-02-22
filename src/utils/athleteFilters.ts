@@ -1,4 +1,4 @@
-import type { Athlete } from "../components/Table/types/athlete"
+import type { Athlete } from "../types/athlete"
 import type { SearchState } from "../components/Search"
 import type { ColumnFilters } from "../components/Table"
 
@@ -15,16 +15,7 @@ export function filterBySearch(data: Athlete[], state: SearchState): Athlete[] {
     if (q === "") return data
     const exactMatch = EXACT_MATCH_FIELDS.includes(field)
     return data.filter((row) => {
-        const value = row[field]
-        const str =
-            typeof value === "string" || typeof value === "number"
-                ? String(value)
-                : value === true
-                    ? "yes"
-                    : value === false
-                        ? "no"
-                        : String(value)
-        const lower = str.toLowerCase()
+        const lower = cellToString(row[field])
         return exactMatch ? lower === q : lower.includes(q)
     })
 }
@@ -34,13 +25,17 @@ export function filterByColumns(
     columnFilters: ColumnFilters,
 ): Athlete[] {
     return data.filter((row) =>
-        (Object.entries(columnFilters) as [keyof Athlete, string][]).every(
-            ([key, q]) => {
-                const query = q?.trim().toLowerCase()
-                if (!query) return true
+        (Object.entries(columnFilters) as [keyof Athlete, string[]][]).every(
+            ([key, queries]) => {
+                if (!queries || queries.length === 0) return true
                 const cell = cellToString(row[key])
                 const exactMatch = EXACT_MATCH_FIELDS.includes(key)
-                return exactMatch ? cell === query : cell.includes(query)
+
+                return queries.some((q) => {
+                    const query = q.trim().toLowerCase()
+                    if (!query) return true
+                    return exactMatch ? cell === query : cell.includes(query)
+                })
             },
         ),
     )
