@@ -3,7 +3,7 @@ import Loader from "./components/Loader"
 import Search from "./components/Search"
 import FilterPanel from "./components/FilterPanel"
 import Table from "./components/Table"
-import { parseAthletes } from "./components/Table/utils/parseAthletes"
+import { parseAthletes } from "./utils/parseAthletes"
 import { useAthleteTable } from "./hooks/useAthleteTable"
 import athletesJson from "./data/athletes.json"
 

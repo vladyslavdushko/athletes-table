@@ -1,4 +1,4 @@
-import type { Athlete } from "../../../types/athlete"
+import type { Athlete } from "../types/athlete"
 
 const REQUIRED_KEYS: (keyof Athlete)[] = [
   'id', 'athleteCode', 'firstName', 'lastName', 'gender', 'age', 'dateOfBirth',
