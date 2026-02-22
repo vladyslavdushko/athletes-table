@@ -1,0 +1,239 @@
+/* ─── Accordion wrapper ─── */
+.accordion {
+    margin-bottom: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    overflow: hidden;
+}
+
+/* ─── Toggle button (always visible) ─── */
+.toggleButton {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.7rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    font-family: inherit;
+    color: #c4b5fd;
+    background: rgba(139, 92, 246, 0.06);
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.toggleButton:hover {
+    background: rgba(139, 92, 246, 0.12);
+}
+
+.toggleLabel {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filterCount {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.3rem;
+    height: 1.3rem;
+    padding: 0 0.35rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #fff;
+    background: rgba(139, 92, 246, 0.55);
+    border-radius: 999px;
+}
+
+.chevron {
+    font-size: 0.6rem;
+    transition: transform 0.25s ease;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.chevronOpen {
+    transform: rotate(180deg);
+}
+
+/* ─── Collapsible body ─── */
+.body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease;
+}
+
+.bodyOpen {
+    grid-template-rows: 1fr;
+}
+
+.bodyInner {
+    overflow: hidden;
+}
+
+/* ─── Filter rows inside the body ─── */
+.content {
+    padding: 0.75rem 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.filterRow {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.categorySelect {
+    padding: 0.4rem 0.65rem;
+    font-size: 0.82rem;
+    font-family: inherit;
+    color: #e2e8f0;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    outline: none;
+    cursor: pointer;
+    min-width: 10rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.categorySelect:focus {
+    border-color: rgba(139, 92, 246, 0.5);
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.15);
+}
+
+.categorySelect option {
+    background: #1e1b2e;
+    color: #e2e8f0;
+}
+
+.valueInput {
+    flex: 1;
+    min-width: 10rem;
+    padding: 0.4rem 0.65rem;
+    font-size: 0.82rem;
+    font-family: inherit;
+    color: #e2e8f0;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.valueInput::placeholder {
+    color: rgba(255, 255, 255, 0.25);
+}
+
+.valueInput:focus {
+    border-color: rgba(139, 92, 246, 0.5);
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.15);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.removeButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    padding: 0;
+    font-size: 1rem;
+    line-height: 1;
+    font-family: inherit;
+    color: rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+}
+
+.removeButton:hover {
+    color: #f87171;
+    background: rgba(248, 113, 113, 0.1);
+    border-color: rgba(248, 113, 113, 0.25);
+}
+
+/* ─── Action buttons row ─── */
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-top: 0.35rem;
+    flex-wrap: wrap;
+}
+
+.addButton {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    font-family: inherit;
+    color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px dashed rgba(255, 255, 255, 0.12);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.addButton:hover {
+    color: rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.applyButton {
+    padding: 0.4rem 1rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    font-family: inherit;
+    color: #fff;
+    background: rgba(139, 92, 246, 0.45);
+    border: 1px solid rgba(139, 92, 246, 0.5);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-left: auto;
+}
+
+.applyButton:hover {
+    background: rgba(139, 92, 246, 0.6);
+    box-shadow: 0 0 14px rgba(139, 92, 246, 0.25);
+}
+
+.applyButton:active {
+    transform: scale(0.97);
+}
+
+.clearButton {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    font-family: inherit;
+    color: rgba(255, 255, 255, 0.4);
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.clearButton:hover {
+    color: #f87171;
+    border-color: rgba(248, 113, 113, 0.2);
+    background: rgba(248, 113, 113, 0.06);
+}
+
+/* ─── Empty state ─── */
+.emptyHint {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.3);
+    padding: 0.25rem 0;
+}
