@@ -75,7 +75,16 @@ export default function FilterPanel({
     }
 
     const removeRow = (id: number) => {
-        setRows((prev) => prev.filter((r) => r.id !== id))
+        const nextRows = rows.filter((r) => r.id !== id)
+        setRows(nextRows)
+
+        const filters: ColumnFilters = {}
+        for (const row of nextRows) {
+            if (row.value.trim() !== "") {
+                filters[row.field] = row.value
+            }
+        }
+        onApply(filters)
     }
 
     const updateField = (id: number, field: keyof Athlete) => {
