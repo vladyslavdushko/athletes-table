@@ -1,0 +1,200 @@
+.tableContainer {
+  overflow-x: auto;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(139, 92, 246, 0.3) transparent;
+}
+
+.tableContainer::-webkit-scrollbar {
+  height: 8px;
+}
+
+.tableContainer::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tableContainer::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.3);
+  border-radius: 4px;
+}
+
+.tableContainer::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.5);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 1200px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.tableHeader {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.2s ease, background 0.2s ease;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.tableHeader:hover {
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(139, 92, 246, 0.08);
+}
+
+.sortIcon {
+  margin-left: 0.35rem;
+  font-size: 0.7rem;
+  color: #a78bfa;
+}
+
+.filterHeader {
+  padding: 0.35rem 0.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  vertical-align: top;
+}
+
+.filterInput {
+  width: 100%;
+  min-width: 3rem;
+  padding: 0.35rem 0.6rem;
+  box-sizing: border-box;
+  font-size: 0.8rem;
+  font-family: inherit;
+  color: #e2e8f0;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.filterInput::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.filterInput:focus {
+  border-color: rgba(139, 92, 246, 0.5);
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.15);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.table tbody tr {
+  transition: background 0.15s ease;
+}
+
+.table tbody tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: transparent;
+}
+
+.table tbody tr:hover {
+  background-color: rgba(139, 92, 246, 0.07) !important;
+}
+
+.tableCell {
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.8);
+  white-space: nowrap;
+}
+
+.pagination {
+  margin-top: 0;
+  padding: 0.85rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  background: rgba(255, 255, 255, 0.03);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 0 0 12px 12px;
+}
+
+.paginationButton {
+  padding: 0.4rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  font-family: inherit;
+  color: #c4b5fd;
+  background: rgba(139, 92, 246, 0.12);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.paginationButton:hover:not(:disabled) {
+  background: rgba(139, 92, 246, 0.22);
+  border-color: rgba(139, 92, 246, 0.4);
+  color: #e9e0ff;
+  box-shadow: 0 0 12px rgba(139, 92, 246, 0.15);
+}
+
+.paginationButton:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.paginationButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
+.pageInput::-webkit-outer-spin-button,
+.pageInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.pageInput {
+  -moz-appearance: textfield;
+  appearance: textfield;
+  width: 4ch;
+  padding: 0.4rem 0.5rem;
+  text-align: center;
+  font-size: 0.8rem;
+  font-family: inherit;
+  color: #e2e8f0;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pageInput:focus {
+  border-color: rgba(139, 92, 246, 0.5);
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.15);
+}
+
+.paginationText {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.8rem;
+}
+
+.paginationStatus {
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.8rem;
+  margin-left: auto;
+}
